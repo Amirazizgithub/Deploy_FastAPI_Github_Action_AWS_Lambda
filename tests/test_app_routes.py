@@ -152,7 +152,7 @@ class TestRoutes:
         # Mock health data - typically a dictionary
         mock_health_data = {"message": "Service Health is Good"}
         mock_health_instance = MagicMock()
-        mock_health_instance.get_health_check.return_value = (mock_health_data)
+        mock_health_instance.get_health_check.return_value = mock_health_data
 
         with patch(HEALTH_CHECK_PATH) as MockModel:
             MockModel.return_value = mock_health_instance
@@ -166,12 +166,11 @@ class TestRoutes:
             assert isinstance(response_data, dict)
             # If the list is not empty, check the structure of the first item
             if response_data:
-                assert response_data ==  mock_health_data
+                assert response_data == mock_health_data
                 assert "message" in response_data
                 assert isinstance(response_data["message"], str)
                 assert response_data["message"] == "Service Health is Good"
             mock_health_instance.get_health_check.assert_called_once()
-        
 
 
 # Run the tests using pytest
