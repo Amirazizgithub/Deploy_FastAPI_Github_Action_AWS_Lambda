@@ -24,7 +24,7 @@ app.include_router(routes)
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello from FastAPI on Lambda!"}
+    return {"message": "Hello from FastAPI on AWS Lambda!"}
 
 
 # Handler for AWS Lambda
