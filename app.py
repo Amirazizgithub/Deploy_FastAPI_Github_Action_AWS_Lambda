@@ -21,5 +21,11 @@ app.add_middleware(
 # This connects the /query_response and /session_history endpoints
 app.include_router(routes)
 
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello from FastAPI on Lambda!"}
+
+
 # Handler for AWS Lambda
 handler = Mangum(app)
