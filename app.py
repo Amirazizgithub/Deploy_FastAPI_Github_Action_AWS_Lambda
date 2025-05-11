@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.routes import routes
 from mangum import Mangum
 
-app = FastAPI(openapi_prefix="/backened-fastapi")
+app = FastAPI()
 
 # CORS Middleware - Keep if needed, but if serving frontend and backend
 # from the same FastAPI app, it might not be strictly necessary.
