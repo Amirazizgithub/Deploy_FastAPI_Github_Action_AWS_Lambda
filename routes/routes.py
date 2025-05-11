@@ -24,10 +24,9 @@ async def response_of_user_query(request: Request):
             )
 
         generative_ai_model = Generative_AI_Model()
-        response = generative_ai_model.generate_response_according_selected_model_type(
+        return generative_ai_model.generate_response_according_selected_model_type(
             model_type=model_type, user_query=user_query
         )
-        return JSONResponse(content=response, status_code=200)
 
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=500)
@@ -38,8 +37,7 @@ async def response_of_user_query(request: Request):
 async def get_session_history():
     try:
         generative_ai_model = Generative_AI_Model()
-        response = generative_ai_model.get_session_history_from_MongoDB()
-        return JSONResponse(content=response, status_code=200)
+        return generative_ai_model.get_session_history_from_MongoDB()
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=500)
 

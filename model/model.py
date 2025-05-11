@@ -93,6 +93,6 @@ class Generative_AI_Model:
                 .sort("_id", -1)
                 .limit(10)
             )
-            return session_history
+            return JSONResponse(content={"message": session_history}, status_code=200)
         except Exception as e:
             return JSONResponse(content={"message": str(e)}, status_code=500)
