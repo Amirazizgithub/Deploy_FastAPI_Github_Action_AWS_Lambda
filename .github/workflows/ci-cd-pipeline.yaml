@@ -99,4 +99,4 @@ jobs:
         run: |
           aws lambda update-function-code \
             --function-name ${{ secrets.AWS_LAMBDA_FUNCTION_NAME }} \
-            --image-uri ${{ needs.Continuous-Integration.outputs.image }}
+            --image-uri ${{ secrets.LATEST_IMAGE_URI }}

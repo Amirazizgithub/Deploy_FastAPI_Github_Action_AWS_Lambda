@@ -48,11 +48,8 @@ async def get_session_history():
 async def get_health_check():
     try:
         api_key = os.environ.get("OPENAI_API_KEY")
-        a = type(api_key)
         return JSONResponse(
-            content={
-                "message": f"Service Health is Good. API_Key: {api_key}, type:{a}"
-            },
+            content={"message": f"Service Health is Good. API_Key: {api_key}"},
             status_code=200,
         )
     except Exception as e:
