@@ -47,9 +47,10 @@ async def get_session_history():
 @routes.get("/health")
 async def get_health_check():
     try:
-        api_key=os.environ.get("OPENAI_API_KEY")
+        api_key = os.environ.get("OPENAI_API_KEY")
         return JSONResponse(
-            content={"message": f"Service Health is Good. API_Key: {api_key}"}, status_code=200
+            content={"message": f"Service Health is Good. API_Key: {api_key}"},
+            status_code=200,
         )
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=500)
