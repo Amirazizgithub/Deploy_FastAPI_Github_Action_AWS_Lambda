@@ -12,7 +12,7 @@ load_dotenv()
 ## Scrap & Generate Product Data by Generative AI
 class Generative_AI_Model:
     def __init__(self) -> JSONResponse:
-        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         self.mongodb_session_history_collection = MongoDB_Client().get_collection()
 
     def __str__(self):
@@ -49,7 +49,7 @@ class Generative_AI_Model:
 
     # Generate response using Gemini 1.5
     def generate_response_from_Gemini(self, user_query) -> str:
-        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
         model = genai.GenerativeModel(
             "gemini-1.5-flash",
             generation_config=genai.GenerationConfig(
@@ -61,7 +61,9 @@ class Generative_AI_Model:
 
     # Generate response according to selected model type
     # and store the session history in MongoDB
-    def generate_response_according_selected_model_type(self, model_type, user_query):
+    def generate_response_according_selected_model_type(
+        self, model_type, user_query
+    ) -> dict:
         try:
             if model_type == "OpenAI":
                 model_response = self.generate_response_from_OPENAI(user_query)
@@ -84,7 +86,7 @@ class Generative_AI_Model:
             return JSONResponse(content={"message": str(e)}, status_code=500)
 
     # Get the session history from MongoDB
-    def get_session_history_from_MongoDB(self):
+    def get_session_history_from_MongoDB(self) -> dict:
         try:
             session_history = list(
                 self.mongodb_session_history_collection.find(
