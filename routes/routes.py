@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
 from model.model import Generative_AI_Model
 import warnings
+import os
 
 warnings.filterwarnings("ignore")
 
@@ -46,8 +47,9 @@ async def get_session_history():
 @routes.get("/health")
 async def get_health_check():
     try:
+        api_key=os.environ.get("OPENAI_API_KEY")
         return JSONResponse(
-            content={"message": "Service Health is Good"}, status_code=200
+            content={"message": f"Service Health is Good. API_Key: {api_key}"}, status_code=200
         )
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=500)
