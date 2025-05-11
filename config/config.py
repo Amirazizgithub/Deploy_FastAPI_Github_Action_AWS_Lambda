@@ -1,16 +1,13 @@
 import os
 from pymongo import MongoClient
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 class MongoDB_Client:
     def __init__(self):
         """Initialize the MongoDB connection."""
-        self.mongodb_uri = os.getenv("MONGODB_URI")
-        self.mongodb_database_name = os.getenv("MONGODB_DATABASE_NAME")
-        self.mongodb_session_history_collection = os.getenv(
+        self.mongodb_uri = os.environ.get("MONGODB_URI")
+        self.mongodb_database_name = os.environ.get("MONGODB_DATABASE_NAME")
+        self.mongodb_session_history_collection = os.environ.get(
             "MONGODB_SESSION_HISTORY_COLLECTION"
         )
         self.client = MongoClient(self.mongodb_uri)

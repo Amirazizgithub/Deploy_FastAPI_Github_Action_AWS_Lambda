@@ -4,9 +4,6 @@ from openai import OpenAI
 from config.config import MongoDB_Client
 from fastapi.responses import JSONResponse
 import google.generativeai as genai
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 ## Scrap & Generate Product Data by Generative AI
