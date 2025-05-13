@@ -1,4 +1,4 @@
-name: Deploy Application Docker Image to AWS ECS Cluster
+name: Deploy Application Docker Image to AWS LAMBDA
 
 on:
   push:
